@@ -2,6 +2,7 @@ export const APP_ROUTES = {
     REQUESTS: 'requests',
     USER: 'user',
     AUTH: 'auth',
+    REVIEW: 'review',
 }
 
 export const REQUESTS_ROUTES = {
@@ -17,4 +18,10 @@ export const USERS_ROUTES = {
 export const AUTH_ROUTES = {
     LOGIN: 'login',
     LOGOUT: 'logout',
+}
+
+export const REVIEW_ROUTES = {
+    GET: 'get',
+    RESOLVED: 'resolved',
+    FEEDBACK: 'feedback',
 }

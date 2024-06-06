@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SessionsRepository } from './session.repository.dto';
+import { SessionsRepository } from './session.repository';
 import { LoginDto } from './dtos/login.dto';
 import { UserService } from '@/users/user.service';
 import { generateSessionId } from '@/utils/session-utils';

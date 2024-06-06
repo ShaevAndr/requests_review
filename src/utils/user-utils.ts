@@ -19,3 +19,7 @@ export function generatePassword(length: number = 8): string {
         strict: false
     });
 }
+
+export const comparePasswords = async (password: string, hash: string) => {
+    return await bcrypt.compare(password, hash);
+}

@@ -1,4 +1,4 @@
-import { APP_ROUTES, AUTH_ROUTES, REQUESTS_ROUTES } from '@/const/path.const';
+import { APP_ROUTES, AUTH_ROUTES } from '@/const/path.const';
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
@@ -26,7 +26,9 @@ export class AuthController {
     @Get(AUTH_ROUTES.LOGOUT)
     @HttpCode(HttpStatus.OK)
     async logout(@Res() res, @Req() req) {
+        console.log(req.cookies);
         const sessionId = req.cookies['sessionId'];
+
         await this.authService.logout(sessionId);
         res.clearCookie('sessionId');
         return res.send('Logged out');

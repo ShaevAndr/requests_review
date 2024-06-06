@@ -25,11 +25,11 @@ export class SessionsRepository {
         }
     }
 
-    async delete(email: string) {
+    async delete(sessionId: string) {
         try {
 
             return await prisma.session.delete({
-                where: { user_email: email },
+                where: { session: sessionId },
             });
         } catch (e) {
             console.log(e);

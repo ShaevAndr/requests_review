@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { UsersRepository } from './user.repository';
 import { MailService } from '@/mail/mail.service';
 import { UserDto } from './dtos/user.dto';
-import { generatePassword, hashPassword } from '@/utils/user-utils';
+import { comparePasswords, generatePassword, hashPassword } from '@/utils/user-utils';
 import { ChangePasswordtDto } from './dtos/change-pas.dto';
 
 @Injectable()
@@ -60,8 +60,8 @@ export class UserService {
     }
 
     private async checkPassword(user: UserDto, password: string) {
-        const hashedPassword = await hashPassword(password);
-        if (hashedPassword !== user.password) {
+
+        if (await !comparePasswords(password, user.password)) {
             throw new HttpException('Неверный пароль', HttpStatus.UNAUTHORIZED);
         }
     }
