@@ -32,14 +32,8 @@ export class UserService {
     }
 
     async changePassword(changePasswordtDto: ChangePasswordtDto) {
-        const user = await this.usersRepository.findUser(changePasswordtDto.email);
-        if (!user) {
-            throw new HttpException('Пользователь не найден', HttpStatus.NOT_FOUND);
-        }
-        const hashedPassword = await hashPassword(changePasswordtDto.password);
-        if (hashedPassword !== user.password) {
-            throw new HttpException('Неверный пароль', HttpStatus.UNAUTHORIZED);
-        }
+        const user = await this.findUser(changePasswordtDto.email);
+        await this.checkPassword(user, changePasswordtDto.password);
         const newPassword = await hashPassword(changePasswordtDto.newPassword);
         return await this.usersRepository.update(changePasswordtDto.email, newPassword);
     }
