@@ -15,7 +15,7 @@ export class RequestsController {
     @ApiOperation({ summary: 'Создание новой заявки' })
     @ApiResponse({ status: HttpStatus.CREATED })
     @Post(REQUESTS_ROUTES.CREATE)
-    create(@Body() createRequestDto: CreateRequestDto) {
+    async create(@Body() createRequestDto: CreateRequestDto) {
         await this.requestsService.create(createRequestDto);
     }
 }
