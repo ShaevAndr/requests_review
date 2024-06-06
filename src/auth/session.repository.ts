@@ -5,14 +5,6 @@ import { LoginDto } from './dtos/login.dto';
 
 @Injectable()
 export class SessionsRepository {
-    async findUser(email: string) {
-        try {
-            return await prisma.user.findUnique({ where: { email } });
-        } catch (e) {
-            console.log(e);
-            return null;
-        }
-    }
 
     async create(sessionId: string, user: LoginDto) {
         try {
