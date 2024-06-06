@@ -15,7 +15,7 @@ export class UserController {
 
     @ApiOperation({ summary: 'Создание нового пользователя' })
     @ApiResponse({ status: HttpStatus.CREATED })
-    @Post(USERS_ROUTES.CREATE)
+    @Post(USERS_ROUTES.REGISTR)
     async create(@Body() createRequestDto: UserDto) {
         await this.userService.create(createRequestDto);
 
