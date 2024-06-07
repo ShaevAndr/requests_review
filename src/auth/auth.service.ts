@@ -13,6 +13,7 @@ export class AuthService {
 
     async login(loginDto: LoginDto) {
         const user = await this.usersService.getUser(loginDto);
+
         const sessionId = generateSessionId();
         await this.sessionsRepository.create(sessionId, user);
         return sessionId;

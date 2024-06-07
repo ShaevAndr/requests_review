@@ -12,7 +12,7 @@ export class AuthController {
     ) { }
 
     @ApiOperation({ summary: 'Login' })
-    @ApiResponse({ status: HttpStatus.CREATED })
+    @ApiResponse({ status: HttpStatus.OK })
     @Post(AUTH_ROUTES.LOGIN)
     @HttpCode(HttpStatus.OK)
     async login(@Body() loginDto: LoginDto, @Res() res) {
@@ -22,7 +22,7 @@ export class AuthController {
     }
 
     @ApiOperation({ summary: 'Logout' })
-    @ApiResponse({ status: HttpStatus.CREATED })
+    @ApiResponse({ status: HttpStatus.OK })
     @Get(AUTH_ROUTES.LOGOUT)
     @HttpCode(HttpStatus.OK)
     async logout(@Res() res, @Req() req) {

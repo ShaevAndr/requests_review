@@ -21,7 +21,7 @@ model Request {
   message    String
   comment    String?
   created_at DateTime  @default(now())
-  updated_at DateTime?
+  updated_at DateTime? @updatedAt
 }
 
 model User {

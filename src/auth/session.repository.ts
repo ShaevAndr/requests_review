@@ -8,8 +8,10 @@ export class SessionsRepository {
 
     async create(sessionId: string, user: LoginDto) {
         try {
-            return await prisma.session.create({
-                data: { session: sessionId, user_email: user.email }
+            return await prisma.session.upsert({
+                where: { user_email: user.email },
+                create: { session: sessionId, user_email: user.email },
+                update: { session: sessionId },
             });
         } catch (e) {
             console.log(e);

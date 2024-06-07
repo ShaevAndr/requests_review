@@ -7,6 +7,7 @@ export const APP_ROUTES = {
 
 export const REQUESTS_ROUTES = {
     CREATE: 'create',
+    GET: 'get',
 }
 
 export const USERS_ROUTES = {
@@ -21,7 +22,6 @@ export const AUTH_ROUTES = {
 }
 
 export const REVIEW_ROUTES = {
-    GET: 'get',
     RESOLVED: 'resolved',
     FEEDBACK: 'feedback',
 }

@@ -1,12 +1,26 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import prisma from 'prisma/prisma.service';
 import { CreateRequestDto } from './dtos/request-create.dto';
+import { Prisma, Statuses } from '@prisma/client';
+import { UpdateRequestDto } from './dtos/update-request.dto';
 
 @Injectable()
 export class RequestsRepository {
-    async findAll() {
+    async findAll(params) {
         try {
-            return await prisma.request.findMany();
+            const { order, filter } = params;
+
+            const query = prisma.request.findMany({
+                orderBy: {
+                    created_at: order === 'asc' ? 'asc' : 'desc',
+                },
+                where: {
+                    ...(filter && { status: filter }),
+                },
+            });
+
+            return await query;
+
         } catch (e) {
             console.log(e);
             return [];
@@ -24,7 +38,7 @@ export class RequestsRepository {
         }
     }
 
-    private async findOne(id: number) {
+    async findOne(id: number, filter?: Statuses, order?: Prisma.RequestOrderByWithRelationInput) {
         try {
             return await prisma.request.findUnique({ where: { id } })
         } catch (e) {
@@ -33,7 +47,7 @@ export class RequestsRepository {
         }
     }
 
-    async update(id: number, updateRequestDto: Partial<CreateRequestDto>) {
+    async update(id: number, updateRequestDto: UpdateRequestDto) {
         const request = await this.findOne(id);
         if (!request) {
             throw new HttpException('Заявка не найдена', HttpStatus.NOT_FOUND);
