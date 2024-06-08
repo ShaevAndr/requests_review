@@ -17,6 +17,14 @@ export class RequestsRepository {
                 where: {
                     ...(filter && { status: filter }),
                 },
+                select: {
+                    id: true,
+                    name: true,
+                    email: false,
+                    message: true,
+                    created_at: true,
+                    status: true
+                }
             });
 
             return await query;
