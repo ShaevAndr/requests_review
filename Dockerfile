@@ -9,6 +9,8 @@ RUN npm install
 
 COPY . .
 
+RUN npx prisma
+
 RUN npm run build
 
-CMD node dist/main.js
+
