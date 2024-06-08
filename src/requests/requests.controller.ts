@@ -23,7 +23,7 @@ export class RequestsController {
     @ApiResponse({ status: HttpStatus.OK })
     @Get(REQUESTS_ROUTES.GET)
     @HttpCode(HttpStatus.OK)
-    async getAll(@Query() params: ParamsDto) {
+    async getAll(@Query() params?: Partial<ParamsDto>) {
         return await this.requestsService.findAll(params);
     }
 }
