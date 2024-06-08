@@ -13,4 +13,6 @@ RUN npx prisma
 
 RUN npm run build
 
+CMD ["sh", "./start.sh"]
+
 

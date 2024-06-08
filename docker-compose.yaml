@@ -8,10 +8,11 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: npx prisma migrate dev --name 'init' && node dist/src/main
+    command: sh -c "./start.sh"
     restart: always
     environment:
       NODE_ENV: production
+      DATABASE_URL: "postgresql://andrew:12345678@postgres:5432/requests"
     ports:
       - 3000:3000
     networks:
