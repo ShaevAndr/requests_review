@@ -19,7 +19,7 @@ export class ReviewController {
         await this.reviewService.sendComment(data.id, data.emailBody);
     }
 
-    @ApiOperation({ summary: 'Отправка комментария на почту автору' })
+    @ApiOperation({ summary: 'Подтверждение заявки' })
     @ApiResponse({ status: HttpStatus.OK })
     @HttpCode(HttpStatus.OK)
     @Post(REVIEW_ROUTES.RESOLVED)
