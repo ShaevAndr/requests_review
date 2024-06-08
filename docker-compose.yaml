@@ -27,7 +27,7 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - /home/spinoza33/database/requests:/var/lib/postgresql/data
+      - /home/spinoza/database/requests:/var/lib/postgresql/data
     networks:
       - local_network
 
