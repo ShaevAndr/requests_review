@@ -1,8 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import prisma from 'prisma/prisma.service';
 import { CreateRequestDto } from './dtos/request-create.dto';
-import { Prisma, Statuses } from '@prisma/client';
+import { Prisma } from '@prisma/client';
 import { UpdateRequestDto } from './dtos/update-request.dto';
+import { Statuses } from './types/statuses.type';
+import { Order } from './dtos/get-params.dto';
 
 @Injectable()
 export class RequestsRepository {
@@ -46,7 +48,7 @@ export class RequestsRepository {
         }
     }
 
-    async findOne(id: number, filter?: Statuses, order?: Prisma.RequestOrderByWithRelationInput) {
+    async findOne(id: number, filter?: Statuses, order?: Order) {
         try {
             return await prisma.request.findUnique({ where: { id } })
         } catch (e) {

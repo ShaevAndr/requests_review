@@ -1,7 +1,7 @@
 import { MailService } from '@/mail/mail.service';
 import { RequestsService } from '@/requests/requests.service';
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { Statuses } from '@prisma/client';
+import { Statuses } from '@/requests/types/statuses.type';
 
 @Injectable()
 export class ReviewService {

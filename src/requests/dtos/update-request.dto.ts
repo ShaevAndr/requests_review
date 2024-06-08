@@ -1,4 +1,4 @@
-import { Statuses } from "@prisma/client";
+import { Statuses } from "../types/statuses.type";
 
 export type UpdateRequestDto = {
     name?: string;
