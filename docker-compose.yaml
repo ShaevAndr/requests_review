@@ -1,0 +1,36 @@
+version: "3.3"
+
+services:
+
+  server:
+    depends_on:
+      - postgres
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    environment:
+      NODE_ENV: production
+    ports:
+      - 3000:3000
+    networks:
+      - local_network
+
+  postgres:
+    image: postgres:15.7-alpine
+    container_name: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: andrew
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: requests
+    ports:
+      - 5432:5432
+    volumes:
+      - /home/spinoza33/database/requests:/var/lib/postgresql/data
+    networks:
+      - local_network
+
+networks:
+  local_network:
+    driver: bridge
