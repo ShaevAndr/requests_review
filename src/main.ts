@@ -16,6 +16,7 @@ async function bootstrap() {
     .setTitle('Обработка заявок')
     .setDescription('Описание API')
     .setVersion('1.0')
+    .addCookieAuth('sessionId')
     .build();
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('documentation', app, document);

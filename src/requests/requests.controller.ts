@@ -1,7 +1,7 @@
 import { Body, Controller, Get, HttpCode, HttpStatus, Post, Query } from '@nestjs/common';
 import { RequestsService } from './requests.service';
 import { APP_ROUTES, REQUESTS_ROUTES } from 'src/const/path.const';
-import { ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiCookieAuth, ApiOperation, ApiQuery, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateRequestDto } from './dtos/request-create.dto';
 import { ParamsDto } from './dtos/get-params.dto';
 
@@ -19,6 +19,7 @@ export class RequestsController {
         await this.requestsService.create(createRequestDto);
     }
 
+    @ApiCookieAuth('sessionId')
     @ApiOperation({ summary: 'Получение заявок' })
     @ApiQuery({
         name: 'params',
@@ -33,3 +34,5 @@ export class RequestsController {
         return await this.requestsService.findAll(params);
     }
 }
+
+
